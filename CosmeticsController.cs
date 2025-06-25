@@ -938,7 +938,7 @@ namespace GorillaNetworking
 				case "fur":
 					if (wardrobeType == 4)
 					{
-						return
+						return;
 					}
 					wardrobeType = 4;
 					break;
