@@ -1280,6 +1280,7 @@ namespace GorillaNetworking
 				wardrobe.wardrobeItemButtons[0].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 3 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3] : nullItem);
 				wardrobe.wardrobeItemButtons[1].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 3 + 1 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 1] : nullItem);
 				wardrobe.wardrobeItemButtons[2].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 3 + 2 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 2] : nullItem);
+				wardrobe.wardrobeItemButtons[3].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 3 + 3 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 3] : nullItem);
 				for (iterator = 0; iterator < wardrobe.wardrobeItemButtons.Length; iterator++)
 				{
 					CosmeticItem currentCosmeticItem = wardrobe.wardrobeItemButtons[iterator].currentCosmeticItem;
@@ -1289,6 +1290,7 @@ namespace GorillaNetworking
 				wardrobe.wardrobeItemButtons[0].controlledModel.SetCosmeticActive(wardrobe.wardrobeItemButtons[0].currentCosmeticItem.displayName);
 				wardrobe.wardrobeItemButtons[1].controlledModel.SetCosmeticActive(wardrobe.wardrobeItemButtons[1].currentCosmeticItem.displayName);
 				wardrobe.wardrobeItemButtons[2].controlledModel.SetCosmeticActive(wardrobe.wardrobeItemButtons[2].currentCosmeticItem.displayName);
+				wardrobe.wardrobeItemButtons[3].controlledModel.SetCosmeticActive(wardrobe.wardrobeItemButtons[3].currentCosmeticItem.displayName);
 				wardrobe.selfDoll.SetCosmeticActiveArray(currentWornSet.ToDisplayNameArray(), currentWornSet.ToOnRightSideArray());
 			}
 		}
