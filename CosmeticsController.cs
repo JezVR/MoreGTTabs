@@ -1277,10 +1277,10 @@ namespace GorillaNetworking
 			for (int i = 0; i < array.Length; i++)
 			{
 				Wardrobe wardrobe = array[i];
-				wardrobe.wardrobeItemButtons[0].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 3 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3] : nullItem);
-				wardrobe.wardrobeItemButtons[1].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 3 + 1 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 1] : nullItem);
-				wardrobe.wardrobeItemButtons[2].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 3 + 2 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 2] : nullItem);
-				wardrobe.wardrobeItemButtons[3].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 3 + 3 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 3] : nullItem);
+				wardrobe.wardrobeItemButtons[0].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3] : nullItem);
+				wardrobe.wardrobeItemButtons[1].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 1 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 1] : nullItem);
+				wardrobe.wardrobeItemButtons[2].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 2 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 2] : nullItem);
+				wardrobe.wardrobeItemButtons[3].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 3 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 3] : nullItem);
 				for (iterator = 0; iterator < wardrobe.wardrobeItemButtons.Length; iterator++)
 				{
 					CosmeticItem currentCosmeticItem = wardrobe.wardrobeItemButtons[iterator].currentCosmeticItem;
