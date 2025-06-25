@@ -87,7 +87,7 @@ namespace GorillaNetworking
 
 			public CosmeticItem[] items;
 
-			public string[] returnArray = new string[11];
+			public string[] returnArray = new string[12];
 
 			public event OnSetActivatedHandler onSetActivatedEvent;
 
@@ -101,12 +101,12 @@ namespace GorillaNetworking
 
 			public CosmeticSet()
 			{
-				items = new CosmeticItem[11];
+				items = new CosmeticItem[12];
 			}
 
 			public CosmeticSet(string[] itemNames, CosmeticsController controller)
 			{
-				items = new CosmeticItem[11];
+				items = new CosmeticItem[12];
 				for (int i = 0; i < itemNames.Length; i++)
 				{
 					string displayName = itemNames[i];
@@ -125,7 +125,7 @@ namespace GorillaNetworking
 
 			public void MergeSets(CosmeticSet tryOn, CosmeticSet current)
 			{
-				for (int i = 0; i < 11; i++)
+				for (int i = 0; i < 12; i++)
 				{
 					if (tryOn == null)
 					{
@@ -140,7 +140,7 @@ namespace GorillaNetworking
 
 			public void ClearSet(CosmeticItem nullItem)
 			{
-				for (int i = 0; i < 11; i++)
+				for (int i = 0; i < 12; i++)
 				{
 					items[i] = nullItem;
 				}
@@ -148,7 +148,7 @@ namespace GorillaNetworking
 
 			public bool IsActive(string name)
 			{
-				int num = 11;
+				int num = 12;
 				for (int i = 0; i < num; i++)
 				{
 					if (items[i].displayName == name)
@@ -161,7 +161,7 @@ namespace GorillaNetworking
 
 			public bool HasItemOfCategory(CosmeticCategory category)
 			{
-				int num = 11;
+				int num = 12;
 				for (int i = 0; i < num; i++)
 				{
 					if (!items[i].isNullItem && items[i].itemCategory == category)
@@ -174,7 +174,7 @@ namespace GorillaNetworking
 
 			public bool HasItem(string name)
 			{
-				int num = 11;
+				int num = 12;
 				for (int i = 0; i < num; i++)
 				{
 					if (!items[i].isNullItem && items[i].displayName == name)
@@ -319,7 +319,7 @@ namespace GorillaNetworking
 
 			public void ActivateCosmetics(CosmeticSet prevSet, VRRig rig, BodyDockPositions bDock, CosmeticItem nullItem, CosmeticItemRegistry cosmeticsObjectRegistry)
 			{
-				int num = 11;
+				int num = 12;
 				for (int i = 0; i < num; i++)
 				{
 					if (IsSlotHoldable((CosmeticSlots)i))
@@ -336,7 +336,7 @@ namespace GorillaNetworking
 
 			public void LoadFromPlayerPreferences(CosmeticsController controller)
 			{
-				int num = 11;
+				int num = 12;
 				for (int i = 0; i < num; i++)
 				{
 					CosmeticSlots slot = (CosmeticSlots)i;
@@ -354,7 +354,7 @@ namespace GorillaNetworking
 
 			public string[] ToDisplayNameArray()
 			{
-				int num = 11;
+				int num = 12;
 				for (int i = 0; i < num; i++)
 				{
 					returnArray[i] = items[i].displayName;
@@ -364,7 +364,7 @@ namespace GorillaNetworking
 
 			public string[] HoldableDisplayNames(bool leftHoldables)
 			{
-				int num = 11;
+				int num = 12;
 				int num2 = 0;
 				for (int i = 0; i < num; i++)
 				{
@@ -407,7 +407,7 @@ namespace GorillaNetworking
 
 			public bool[] ToOnRightSideArray()
 			{
-				int num = 11;
+				int num = 12;
 				bool[] array = new bool[num];
 				for (int i = 0; i < num; i++)
 				{
@@ -624,7 +624,7 @@ namespace GorillaNetworking
 				nullItem.isNullItem = true;
 				allCosmeticsDict[nullItem.itemName] = nullItem;
 				allCosmeticsItemIDsfromDisplayNamesDict[nullItem.displayName] = nullItem.itemName;
-				for (int i = 0; i < 11; i++)
+				for (int i = 0; i < 12; i++)
 				{
 					tryOnSet.items[i] = nullItem;
 				}
@@ -710,7 +710,7 @@ namespace GorillaNetworking
 
 		public void SaveCurrentItemPreferences()
 		{
-			for (int i = 0; i < 11; i++)
+			for (int i = 0; i < 12; i++)
 			{
 				CosmeticSlots slot = (CosmeticSlots)i;
 				SaveItemPreference(slot, i, currentWornSet.items[i]);
@@ -814,7 +814,7 @@ namespace GorillaNetworking
 		public void RemoveCosmeticItemFromSet(CosmeticSet set, string itemName, bool applyToPlayerPrefs)
 		{
 			cachedSet.CopyItems(set);
-			for (int i = 0; i < 11; i++)
+			for (int i = 0; i < 12; i++)
 			{
 				if (set.items[i].displayName == itemName)
 				{
@@ -1216,6 +1216,12 @@ namespace GorillaNetworking
 				case CosmeticCategory.Count:
 				case CosmeticCategory.Set:
 					break;
+				case CosmeticCategory.Fur:
+					if (!unlockedFurs.Contains(allCosmetics[num]))
+					{
+						unlockedFurs.Add(allCosmetics[num]);
+					}
+					break;
 			}
 		}
 
@@ -1276,10 +1282,10 @@ namespace GorillaNetworking
 			for (int i = 0; i < array.Length; i++)
 			{
 				Wardrobe wardrobe = array[i];
-				wardrobe.wardrobeItemButtons[0].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3] : nullItem);
-				wardrobe.wardrobeItemButtons[1].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 1 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 1] : nullItem);
-				wardrobe.wardrobeItemButtons[2].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 2 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 2] : nullItem);
-				wardrobe.wardrobeItemButtons[3].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 3 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 3] : nullItem);
+				wardrobe.wardrobeItemButtons[0].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 4] : nullItem);
+				wardrobe.wardrobeItemButtons[1].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 1 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 4 + 1] : nullItem);
+				wardrobe.wardrobeItemButtons[2].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 2 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 4 + 2] : nullItem);
+				wardrobe.wardrobeItemButtons[3].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 3 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 4 + 3] : nullItem);
 				for (iterator = 0; iterator < wardrobe.wardrobeItemButtons.Length; iterator++)
 				{
 					CosmeticItem currentCosmeticItem = wardrobe.wardrobeItemButtons[iterator].currentCosmeticItem;
@@ -1611,6 +1617,10 @@ namespace GorillaNetworking
 						else if (unlockedCosmetic.itemCategory == CosmeticCategory.Badge && !unlockedBadges.Contains(unlockedCosmetic))
 						{
 							unlockedBadges.Add(unlockedCosmetic);
+						}
+						else if (unlockedCosmetic.itemCategory == CosmeticCategory.Fur && !unlockedFurs.Contains(unlockedCosmetic))
+						{
+							unlockedFurs.Add(unlockedCosmetic);
 						}
 						else if (unlockedCosmetic.itemCategory == CosmeticCategory.Holdable && !unlockedHoldable.Contains(unlockedCosmetic))
 						{
