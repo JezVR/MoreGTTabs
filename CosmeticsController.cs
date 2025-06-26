@@ -50,34 +50,34 @@ namespace GorillaNetworking
 			Locked = 9
 		}
 
-		public enum CosmeticCategory
-		{
-			None = 0,
-			Hat = 1,
-			Badge = 2,
-			Face = 3,
-			Holdable = 4,
-			Gloves = 5,
-			Slingshot = 6,
-			Count = 7,
-			Set = 8,
-			Fur = 9
+        public enum CosmeticCategory
+        {
+            None = 0,
+            Hat = 1,
+            Badge = 2,
+            Face = 3,
+            Holdable = 4,
+            Gloves = 5,
+            Slingshot = 6,
+            Count = 7,
+            Set = 8,
+            Fur = 9
 		}
 
-		public enum CosmeticSlots
-		{
-			Hat = 0,
-			Badge = 1,
-			Face = 2,
-			ArmLeft = 3,
-			ArmRight = 4,
-			BackLeft = 5,
-			BackRight = 6,
-			HandLeft = 7,
-			HandRight = 8,
-			Chest = 9,
-			Count = 10,
-			Fur = 11
+        public enum CosmeticSlots
+        {
+            Hat = 0,
+            Badge = 1,
+            Face = 2,
+            ArmLeft = 3,
+            ArmRight = 4,
+            BackLeft = 5,
+            BackRight = 6,
+            HandLeft = 7,
+            HandRight = 8,
+            Chest = 9,
+            Count = 10,
+            Fur = 11
 		}
 
 		[Serializable]
@@ -229,8 +229,8 @@ namespace GorillaNetworking
 						return CosmeticSlots.Hat;
 					case CosmeticSlots.Badge:
 						return CosmeticSlots.Badge;
-					case CosmeticSlots.Fur:
-						return CosmeticSlots.Fur;
+                    case CosmeticSlots.Fur:
+                        return CosmeticSlots.Fur;
 					case CosmeticSlots.Face:
 						return CosmeticSlots.Face;
 					case CosmeticSlots.ArmLeft:
@@ -520,11 +520,12 @@ namespace GorillaNetworking
 
 		public List<CosmeticItem> unlockedBadges = new List<CosmeticItem>();
 
-		public List<CosmeticItem> unlockedFurs = new List<CosmeticItem>();
+        public List<CosmeticItem> unlockedFurs = new List<CosmeticItem>();
 
 		public List<CosmeticItem> unlockedHoldable = new List<CosmeticItem>();
 
-		public int[] cosmeticsPages = new int[6];
+		public int[] cosmeticsPages = new int[5];
+
 		private List<CosmeticItem>[] itemLists = new List<CosmeticItem>[5];
 
 		private int wardrobeType;
@@ -600,7 +601,7 @@ namespace GorillaNetworking
 
 		public int secondsUntilTomorrow;
 
-		public float secondsToWaitToCheckDaily = 11f;
+		public float secondsToWaitToCheckDaily = 12f;
 
 		private string returnString;
 
@@ -632,12 +633,12 @@ namespace GorillaNetworking
 				cosmeticsPages[1] = 0;
 				cosmeticsPages[2] = 0;
 				cosmeticsPages[3] = 0;
-				cosmeticsPages[4] = 0;
+                cosmeticsPages[4] = 0;
 				itemLists[0] = unlockedHats;
 				itemLists[1] = unlockedFaces;
 				itemLists[2] = unlockedBadges;
 				itemLists[3] = unlockedHoldable;
-				itemLists[4] = unlockedFurs;
+                itemLists[4] = unlockedFurs;
 				SwitchToStage(ATMStages.Unavailable);
 				StartCoroutine(CheckCanGetDaily());
 			}
@@ -655,10 +656,10 @@ namespace GorillaNetworking
 					return CosmeticSlots.Hat;
 				case CosmeticCategory.Badge:
 					return CosmeticSlots.Badge;
+                case CosmeticCategory.Fur:
+                    return CosmeticSlots.Fur;
 				case CosmeticCategory.Face:
 					return CosmeticSlots.Face;
-				case CosmeticCategory.Fur:
-					return CosmeticSlots.Fur;
 				default:
 					return CosmeticSlots.Count;
 			}
@@ -843,7 +844,7 @@ namespace GorillaNetworking
 			{
 				currentCart.RemoveAt(searchIndex);
 				pressedStand.isOn = false;
-				for (int i = 0; i < 11; i++)
+				for (int i = 0; i < 12; i++)
 				{
 					if (pressedStand.thisCosmeticItem.itemName == tryOnSet.items[i].itemName)
 					{
@@ -890,57 +891,57 @@ namespace GorillaNetworking
 
 		public void PressWardrobeFunctionButton(string function)
 		{
-			switch (function)
-			{
-				case "left":
-					cosmeticsPages[wardrobeType]--;
-					if (cosmeticsPages[wardrobeType] < 0)
-					{
-						cosmeticsPages[wardrobeType] = (itemLists[wardrobeType].Count - 1) / 4;
-					}
-					break;
-				case "right":
-					cosmeticsPages[wardrobeType]++;
-					if (cosmeticsPages[wardrobeType] > (itemLists[wardrobeType].Count - 1) / 4)
-					{
-						cosmeticsPages[wardrobeType] = 0;
-					}
-					break;
-				case "hat":
-					if (wardrobeType == 0)
-					{
-						return;
-					}
-					wardrobeType = 0;
-					break;
-				case "face":
-					if (wardrobeType == 1)
-					{
-						return;
-					}
-					wardrobeType = 1;
-					break;
-				case "badge":
-					if (wardrobeType == 2)
-					{
-						return;
-					}
-					wardrobeType = 2;
-					break;
-				case "hand":
-					if (wardrobeType == 3)
-					{
-						return;
-					}
-					wardrobeType = 3;
-					break;
-				case "fur":
-					if (wardrobeType == 4)
-					{
-						return;
-					}
-					wardrobeType = 4;
-					break;
+            switch (function)
+            {
+                case "left":
+                    cosmeticsPages[wardrobeType]--;
+                    if (cosmeticsPages[wardrobeType] < 0)
+                    {
+                        cosmeticsPages[wardrobeType] = (itemLists[wardrobeType].Count - 1) / 3;
+                    }
+                    break;
+                case "right":
+                    cosmeticsPages[wardrobeType]++;
+                    if (cosmeticsPages[wardrobeType] > (itemLists[wardrobeType].Count - 1) / 3)
+                    {
+                        cosmeticsPages[wardrobeType] = 0;
+                    }
+                    break;
+                case "hat":
+                    if (wardrobeType == 0)
+                    {
+                        return;
+                    }
+                    wardrobeType = 0;
+                    break;
+                case "face":
+                    if (wardrobeType == 1)
+                    {
+                        return;
+                    }
+                    wardrobeType = 1;
+                    break;
+                case "badge":
+                    if (wardrobeType == 2)
+                    {
+                        return;
+                    }
+                    wardrobeType = 2;
+                    break;
+                case "hand":
+                    if (wardrobeType == 3)
+                    {
+                        return;
+                    }
+                    wardrobeType = 3;
+                    break;
+                case "fur":
+                    if (wardrobeType == 4)
+                    {
+                        return;
+                    }
+                    wardrobeType = 4;
+                    break;
 			}
 			UpdateWardrobeModelsAndButtons();
 		}
@@ -1199,6 +1200,12 @@ namespace GorillaNetworking
 						unlockedBadges.Add(allCosmetics[num]);
 					}
 					break;
+                case CosmeticCategory.Fur:
+                    if (!unlockedFurs.Contains(allCosmetics[num]))
+                    {
+                        unlockedFurs.Add(allCosmetics[num]);
+                    }
+                    break;
 				case CosmeticCategory.Face:
 					if (!unlockedFaces.Contains(allCosmetics[num]))
 					{
@@ -1216,12 +1223,6 @@ namespace GorillaNetworking
 				case CosmeticCategory.Count:
 				case CosmeticCategory.Set:
 					break;
-				case CosmeticCategory.Fur:
-					if (!unlockedFurs.Contains(allCosmetics[num]))
-					{
-						unlockedFurs.Add(allCosmetics[num]);
-					}
-					break;
 			}
 		}
 
@@ -1230,7 +1231,7 @@ namespace GorillaNetworking
 			yield return new WaitForSeconds(1f);
 			foundCosmetic = false;
 			attempts = 0;
-			while (!foundCosmetic && attempts < 11 && PhotonNetwork.InRoom)
+			while (!foundCosmetic && attempts < 12 && PhotonNetwork.InRoom)
 			{
 				playerIDList.Clear();
 				playerIDList.Add(PhotonNetwork.LocalPlayer.UserId);
@@ -1282,20 +1283,9 @@ namespace GorillaNetworking
 			for (int i = 0; i < array.Length; i++)
 			{
 				Wardrobe wardrobe = array[i];
-				if (itemLists[wardrobeType] == null || wardrobe.wardrobeItemButtons == null || wardrobe.wardrobeItemButtons.Length < 4)
-				{
-					continue;
-				}
-				int baseIndex = cosmeticsPages[wardrobeType] * 4;
-				for (int btn = 0; btn < 4; btn++)
-				{
-					int itemIndex = baseIndex * btn;
-					wardrobe.wardrobeItemButtons[btn].currentCosmeticItem = (itemIndex < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][itemIndex] : nullItem;
-				}
-				wardrobe.wardrobeItemButtons[0].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 4] : nullItem);
-				wardrobe.wardrobeItemButtons[1].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 1 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 4 + 1] : nullItem);
-				wardrobe.wardrobeItemButtons[2].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 2 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 4 + 2] : nullItem);
-				wardrobe.wardrobeItemButtons[3].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 3 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 4 + 3] : nullItem);
+				wardrobe.wardrobeItemButtons[0].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 3 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3] : nullItem);
+				wardrobe.wardrobeItemButtons[1].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 3 + 1 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 1] : nullItem);
+				wardrobe.wardrobeItemButtons[2].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 3 + 2 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 3 + 2] : nullItem);
 				for (iterator = 0; iterator < wardrobe.wardrobeItemButtons.Length; iterator++)
 				{
 					CosmeticItem currentCosmeticItem = wardrobe.wardrobeItemButtons[iterator].currentCosmeticItem;
@@ -1305,7 +1295,6 @@ namespace GorillaNetworking
 				wardrobe.wardrobeItemButtons[0].controlledModel.SetCosmeticActive(wardrobe.wardrobeItemButtons[0].currentCosmeticItem.displayName);
 				wardrobe.wardrobeItemButtons[1].controlledModel.SetCosmeticActive(wardrobe.wardrobeItemButtons[1].currentCosmeticItem.displayName);
 				wardrobe.wardrobeItemButtons[2].controlledModel.SetCosmeticActive(wardrobe.wardrobeItemButtons[2].currentCosmeticItem.displayName);
-				wardrobe.wardrobeItemButtons[3].controlledModel.SetCosmeticActive(wardrobe.wardrobeItemButtons[3].currentCosmeticItem.displayName);
 				wardrobe.selfDoll.SetCosmeticActiveArray(currentWornSet.ToDisplayNameArray(), currentWornSet.ToOnRightSideArray());
 			}
 		}
@@ -1439,18 +1428,18 @@ namespace GorillaNetworking
 			{
 				if (computer.startupMillis != 0L)
 				{
-					currentTime = new DateTime((GorillaComputer.instance.startupMillis + (long)(Time.realtimeSinceStartup * 1100f)) * 11000);
+					currentTime = new DateTime((GorillaComputer.instance.startupMillis + (long)(Time.realtimeSinceStartup * 1200f)) * 12000);
 					secondsUntilTomorrow = (int)(currentTime.AddDays(1.0).Date - currentTime).TotalSeconds;
 					if (lastDailyLogin == null || lastDailyLogin == "")
 					{
 						GetLastDailyLogin();
 					}
-					else if (currentTime.ToString("o").Substring(0, 11) == lastDailyLogin)
+					else if (currentTime.ToString("o").Substring(0, 12) == lastDailyLogin)
 					{
 						checkedDaily = true;
 						gotMyDaily = true;
 					}
-					else if (currentTime.ToString("o").Substring(0, 11) != lastDailyLogin)
+					else if (currentTime.ToString("o").Substring(0, 12) != lastDailyLogin)
 					{
 						checkedDaily = true;
 						gotMyDaily = false;
@@ -1460,7 +1449,7 @@ namespace GorillaNetworking
 					{
 						GetLastDailyLogin();
 					}
-					secondsToWaitToCheckDaily = (checkedDaily ? 60f : 11f);
+					secondsToWaitToCheckDaily = (checkedDaily ? 60f : 12f);
 					UpdateCurrencyBoard();
 					yield return new WaitForSeconds(secondsToWaitToCheckDaily);
 				}
@@ -1473,7 +1462,7 @@ namespace GorillaNetworking
 
 		private IEnumerator GetMyDaily()
 		{
-			yield return new WaitForSeconds(11f);
+			yield return new WaitForSeconds(12f);
 			PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest
 			{
 				FunctionName = "TryDistributeCurrency",
@@ -1515,8 +1504,8 @@ namespace GorillaNetworking
 					unlockedCosmetics.Clear();
 					unlockedHats.Clear();
 					unlockedBadges.Clear();
+                    unlockedFurs.Clear();
 					unlockedFaces.Clear();
-					unlockedFurs.Clear();
 					unlockedHoldable.Clear();
 					catalogItems = result2.Catalog;
 					foreach (CatalogItem catalogItem in catalogItems)
@@ -1582,8 +1571,8 @@ namespace GorillaNetworking
 						if (item.ItemId == "Early Access Supporter Pack")
 						{
 							unlockedCosmetics.Add(allCosmetics[1]);
-							unlockedCosmetics.Add(allCosmetics[11]);
-							unlockedCosmetics.Add(allCosmetics[11]);
+							unlockedCosmetics.Add(allCosmetics[12]);
+							unlockedCosmetics.Add(allCosmetics[12]);
 							unlockedCosmetics.Add(allCosmetics[12]);
 							unlockedCosmetics.Add(allCosmetics[13]);
 							unlockedCosmetics.Add(allCosmetics[14]);
@@ -1629,22 +1618,22 @@ namespace GorillaNetworking
 						{
 							unlockedBadges.Add(unlockedCosmetic);
 						}
-						else if (unlockedCosmetic.itemCategory == CosmeticCategory.Fur && !unlockedFurs.Contains(unlockedCosmetic))
-						{
-							unlockedFurs.Add(unlockedCosmetic);
-						}
+                        else if (unlockedCosmetic.itemCategory == CosmeticCategory.Fur && !unlockedFurs.Contains(unlockedCosmetic))
+                        {
+                            unlockedFurs.Add(unlockedCosmetic);
+                        }
 						else if (unlockedCosmetic.itemCategory == CosmeticCategory.Holdable && !unlockedHoldable.Contains(unlockedCosmetic))
-						{
-							unlockedHoldable.Add(unlockedCosmetic);
-						}
-						else if (unlockedCosmetic.itemCategory == CosmeticCategory.Gloves && !unlockedHoldable.Contains(unlockedCosmetic))
-						{
-							unlockedHoldable.Add(unlockedCosmetic);
-						}
-						else if (unlockedCosmetic.itemCategory == CosmeticCategory.Slingshot && !unlockedHoldable.Contains(unlockedCosmetic))
-						{
-							unlockedHoldable.Add(unlockedCosmetic);
-						}
+                        {
+                            unlockedHoldable.Add(unlockedCosmetic);
+                        }
+                        else if (unlockedCosmetic.itemCategory == CosmeticCategory.Gloves && !unlockedHoldable.Contains(unlockedCosmetic))
+                        {
+                            unlockedHoldable.Add(unlockedCosmetic);
+                        }
+                        else if (unlockedCosmetic.itemCategory == CosmeticCategory.Slingshot && !unlockedHoldable.Contains(unlockedCosmetic))
+                        {
+                            unlockedHoldable.Add(unlockedCosmetic);
+                        }
 						concatStringCosmeticsAllowed += unlockedCosmetic.itemName;
 					}
 					CosmeticStand[] array4 = cosmeticStands;
@@ -1816,9 +1805,9 @@ namespace GorillaNetworking
 					switch (currencyButton)
 					{
 						case "one":
-							numShinyRocksToBuy = 1100;
+							numShinyRocksToBuy = 1200;
 							shinyRocksCost = 4.99f;
-							itemToPurchase = "1100SHINYROCKS";
+							itemToPurchase = "1200SHINYROCKS";
 							SwitchToStage(ATMStages.Confirm);
 							break;
 						case "two":
@@ -1884,7 +1873,7 @@ namespace GorillaNetworking
 					break;
 				case ATMStages.Choose:
 					atmText.text = "CHOOSE AN AMOUNT OF SHINY ROCKS TO PURCHASE.";
-					atmButtonsText.text = "$4.99 FOR -->\n1100\n\n$9.99 FOR -->\n2200\n\n$19.99 FOR-->\n5000\n\nBACK -->";
+					atmButtonsText.text = "$4.99 FOR -->\n1200\n\n$9.99 FOR -->\n2200\n\n$19.99 FOR-->\n5000\n\nBACK -->";
 					break;
 				case ATMStages.Confirm:
 					atmText.text = "YOU HAVE CHOSEN TO PURCHASE " + numShinyRocksToBuy + " SHINY ROCKS FOR $" + shinyRocksCost + ". CONFIRM TO LAUNCH A STEAM WINDOW TO COMPLETE YOUR PURCHASE.";
