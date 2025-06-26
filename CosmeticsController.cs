@@ -229,6 +229,8 @@ namespace GorillaNetworking
 						return CosmeticSlots.Hat;
 					case CosmeticSlots.Badge:
 						return CosmeticSlots.Badge;
+					case CosmeticSlots.Fur:
+						return CosmeticSlots.Fur;
 					case CosmeticSlots.Face:
 						return CosmeticSlots.Face;
 					case CosmeticSlots.ArmLeft:
@@ -245,8 +247,6 @@ namespace GorillaNetworking
 						return CosmeticSlots.HandLeft;
 					case CosmeticSlots.Chest:
 						return CosmeticSlots.Chest;
-					case CosmeticSlots.Fur:
-					return CosmeticSlots.Fur;
 					default:
 						return CosmeticSlots.Count;
 				}
