@@ -1516,6 +1516,7 @@ namespace GorillaNetworking
 					unlockedHats.Clear();
 					unlockedBadges.Clear();
 					unlockedFaces.Clear();
+					unlockedFurs.Clear();
 					unlockedHoldable.Clear();
 					catalogItems = result2.Catalog;
 					foreach (CatalogItem catalogItem in catalogItems)
