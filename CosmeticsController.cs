@@ -524,7 +524,7 @@ namespace GorillaNetworking
 
 		public List<CosmeticItem> unlockedHoldable = new List<CosmeticItem>();
 
-		public int[] cosmeticsPages = new int[5];
+		public int[] cosmeticsPages = new int[6];
 		private List<CosmeticItem>[] itemLists = new List<CosmeticItem>[5];
 
 		private int wardrobeType;
