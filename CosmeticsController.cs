@@ -1282,6 +1282,16 @@ namespace GorillaNetworking
 			for (int i = 0; i < array.Length; i++)
 			{
 				Wardrobe wardrobe = array[i];
+				if (itemLists[wardrobeType] == null || wardrobe.wardrobeItemButtons == null || wardrobe.wardrobeItemButtons.Length < 4)
+				{
+					continue;
+				}
+				int baseIndex = cosmeticsPages[wardrobeType] * 4;
+				for (int btn = 0; btn < 4; btn++)
+				{
+					int itemIndex = baseIndex * btn;
+					wardrobe.wardrobeItemButtons[btn].currentCosmeticItem = (itemIndex < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][itemIndex] : nullItem;
+				}
 				wardrobe.wardrobeItemButtons[0].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 4] : nullItem);
 				wardrobe.wardrobeItemButtons[1].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 1 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 4 + 1] : nullItem);
 				wardrobe.wardrobeItemButtons[2].currentCosmeticItem = ((cosmeticsPages[wardrobeType] * 4 + 2 < itemLists[wardrobeType].Count) ? itemLists[wardrobeType][cosmeticsPages[wardrobeType] * 4 + 2] : nullItem);
